@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($scope, $http) {
+  var c = this;
+	
+	c.graphQL = function() {
+		var query = {
+			"query": c.data.query
+		};
+		
+		var resultJSON = $http.post("/api/now/graphql", query)
+		.then(function(response) {
+			c.data.response = response;
+			c.data.pretty_response = JSON.stringify(response, null, 2);
+		});
+	};
+	
+	c.graphQL();
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>graphql_example</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>GraphQL Example</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	data.query = gs.getProperty('x_11264_graphql_ex.query');
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-11-06 17:10:19</sys_created_on>
+        <sys_id>d77aebb92fd42010367d3f96f699b69b</sys_id>
+        <sys_mod_count>21</sys_mod_count>
+        <sys_name>GraphQL Example</sys_name>
+        <sys_package display_value="GraphQL Example" source="x_11264_graphql_ex">8c69a7f52fd42010367d3f96f699b68e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GraphQL Example">8c69a7f52fd42010367d3f96f699b68e</sys_scope>
+        <sys_update_name>sp_widget_d77aebb92fd42010367d3f96f699b69b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-11-06 17:53:13</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default">
+  <div class="wrapper-md">
+    <h1 class="h2 m-t-none m-b-sm font-thin">
+      GraphQL Example
+    </h1>
+    <div class="text-muted">
+      Query stored in <strong>x_11264_graphql_ex.query</strong> System Property
+    </div>
+  </div>
+  <div class="panel-body" ng-if="c.data.response">
+    <div>
+      <pre>{{c.data.pretty_response}}</pre>
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
